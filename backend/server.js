@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+dotenv.config();
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import adminRoute from './routes/adminRoute.js'
@@ -17,11 +18,12 @@ App.use(express.json());
 App.use(cookieParser())
 
 
-dotenv.config();
-const port = 3000;
+
+const port = process.env.PORT || 5000;
+
 
 mongoose
-  .connect(process.env.mongo_uri)
+  .connect(process.env.MONGO_URI)
   .then(console.log("connected"))
   .catch((error) => console.error(error));
 
